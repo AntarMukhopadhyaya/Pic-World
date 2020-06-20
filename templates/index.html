@@ -28,12 +28,16 @@
 </div>
 
 <section class="text-gray-700 body-font">
+ 
   <div class="container px-5 py-24 mx-auto">
+    {% for pic in pics %}
+    <br>
     <div class="flex flex-wrap -mx-4 -mb-10 text-center">
       <div class="sm:w-1/2 mb-10 px-4">
-        {% for pic in pics %}
+        
         <div class="rounded-lg h-64 overflow-hidden">
-          <h5>{{pic.img_name}}</h5>
+          <h1 class="title-font font-medium text-3xl text-gray-900">
+            {{pic.img_name}}</h1>
           <a href="{{pic.web_link}}" target="_blank">
             <img
               alt="content"
@@ -42,15 +46,18 @@
             />
           </a>
         </div>
-        <h5>Posted by: {{user}}</h5>
+        <b><u><a href="/actions/user/{{pic.user}}">Posted by: {{pic.user}}</a></u></b>
 
-        {% endfor %}
+       
 
         <br />
       </div>
     </div>
+    {% endfor %}
   </div>
+  
 </section>
+
 {% else %}
 <section class="text-gray-700 body-font">
   <div
