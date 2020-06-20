@@ -26,6 +26,7 @@ def pic(request,query):
         'img_name': obj.img_name,
         'img': obj.img,
         'tags': obj.tags,
+        'desc': obj.img_desc,
         'pub_date': obj.pub_date,
         'pub_by': obj.user
     }
