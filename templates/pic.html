@@ -7,16 +7,22 @@
     
       
     <div class="lg:w-4/5 mx-auto flex flex-wrap">
+      <a href="{{web_link}}" target="_blank">
       <img
-        alt="ecommerce"
+        alt="{{img_name}}"
         class="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded"
         src="{{img.url}}"
       />
+      </a>
+
+
+
       <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
        
-        <h2 class="text-sm title-font text-gray-500 tracking-widest">
+        <h1 class="title-font font-medium text-3xl text-gray-900">
+          
           {{img_name}}
-        </h2>
+        </h1>
         <br />
        
         <div class="flex mb-4">
@@ -26,12 +32,12 @@
               </div>
         </div>
            
-            <h2 class="text-sm title-font text-gray-500 tracking-widest">
-             Tags:&nbsp;{{tags}}
-            </h2>
+            <h5 class="title-font font-small text-2xl text-gray-900">
+             Tag:&nbsp;{{tags}}
+            </h5>
             <br />
-            <h2 class="text-sm title-font text-gray-500 tracking-widest">
-              Posted by:&nbsp;{{pub_by}} on &nbsp; {{pub_date}}
+            <h2 class="title-font font-small text-1xl text-gray-900">
+              Posted by :&nbsp;{{pub_by}} on &nbsp; {{pub_date}}
             </h2>
              <br />
             
