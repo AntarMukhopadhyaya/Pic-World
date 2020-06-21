@@ -11,5 +11,13 @@ class Pic(models.Model):
     web_link = models.CharField(max_length=500,default='')
     pub_date = models.DateTimeField(auto_now=True)
 
+class Comments(models.Model):
+    id = models.AutoField(primary_key=True)
+    user = models.CharField(max_length=50,default='')
+    comment = models.CharField(max_length=500,default='')
+    comment_pic = models.CharField(max_length=50,default='')
+    pub_date = models.DateField(auto_now=True)
+
+
 
 

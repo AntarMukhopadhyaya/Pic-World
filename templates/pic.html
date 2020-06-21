@@ -1,54 +1,52 @@
-{% extends 'base.html' %} 
-{% block body %}
+{% extends 'base.html' %} {% block body %}
 
 <section class="text-gray-700 body-font overflow-hidden">
   <div class="container px-5 py-24 mx-auto">
-    
-    
-      
     <div class="lg:w-4/5 mx-auto flex flex-wrap">
       <a href="{{web_link}}" target="_blank">
-      <img
-        alt="{{img_name}}"
-        class="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded"
-        src="{{img.url}}"
-      />
+        <img
+          alt="{{img_name}}"
+          class="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded"
+          src="{{img.url}}"
+        />
       </a>
 
-
-
       <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
-       
         <h1 class="title-font font-medium text-3xl text-gray-900">
-          
           {{img_name}}
         </h1>
         <br />
-       
-        <div class="flex mb-4">
-       
-            <div class="p-2 w-full">
-              <h1>{{desc}}</h1>
-              </div>
-        </div>
-           
-            <h5 class="title-font font-small text-2xl text-gray-900">
-             Tag:&nbsp;{{tags}}
-            </h5>
-            <br />
-            <h2 class="title-font font-small text-1xl text-gray-900">
-              Posted by :&nbsp;{{pub_by}} on &nbsp; {{pub_date}}
-            </h2>
-             <br />
-            
-           
 
-          
+        <div class="flex mb-4">
+          <div class="p-2 w-full">
+            <h1>{{desc}}</h1>
+          </div>
         </div>
-    
-       
-        
-      
+
+        <h5 class="title-font font-small text-2xl text-gray-900">
+          Tag:&nbsp;{{tags}}
+        </h5>
+        <br />
+        <h2 class="title-font font-small text-1xl text-gray-900">
+          Posted by :&nbsp;{{pub_by}} on &nbsp; {{pub_date}}
+        </h2>
+        <br />
+        <br>
+        <div class="flex mb-5">
+          <div class="p-2 w-full">
+            <form action="" method="POST">
+              {% csrf_token %}
+              <textarea
+                class="w-full bg-gray-100 rounded border border-gray-400 focus:outline-none h-48 focus:border-purple-500 text-base px-4 py-2 resize-none block"
+                placeholder="Post a Beautiful Comment"
+                name="comment"
+              ></textarea>
+              <br>
+              <hr>
+              <button type='submit' class="inline-flex text-white bg-indigo-500 border-0 py-1 px-4 focus:outline-none hover:bg-indigo-600 rounded">Button</button>
+            </form>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -57,11 +55,13 @@
 <section class="text-gray-700 body-font">
   <div class="container px-5 py-24 mx-auto flex flex-wrap">
     <div class="md:p-2 p-1 w-1/2">
-      <h1 class="sm:text-3xl text-2xl font-medium title-font text-gray-900 lg:w-1/3 lg:mb-0 mb-4">
-      More Pic posted by {{pub_by}}:
-      <br>
+      <h1
+        class="sm:text-3xl text-2xl font-medium title-font text-gray-900 lg:w-1/3 lg:mb-0 mb-4"
+      >
+        More Pic posted by {{pub_by}}:
+        <br />
       </h1>
-      <br>
+      <br />
       <div class="md:p-2 p-1 w-1/2">
         <img
           alt="gallery"
@@ -75,30 +75,28 @@
           class="w-full object-cover h-full object-center block"
           src="https://dummyimage.com/502x302"
         />
-        <br>
-        <br>
+        <br />
+        <br />
         <img
           alt="gallery"
           class="w-full object-cover h-full object-center block"
           src="https://dummyimage.com/502x302"
         />
-        <br>
-        <br>
+        <br />
+        <br />
         <img
           alt="gallery"
           class="w-full object-cover h-full object-center block"
           src="https://dummyimage.com/502x302"
         />
-        <br>
-        <br>
+        <br />
+        <br />
         <img
           alt="gallery"
           class="w-full object-cover h-full object-center block"
           src="https://dummyimage.com/502x302"
         />
-        
       </div>
-      
     </div>
     <!-- <div class="flex w-full mb-20 flex-wrap">
       <h1
@@ -112,7 +110,6 @@
         heard of them man bun deep jianbing selfies heirloom.
       </p>
     </div> -->
-
 
     <!-- <div class="flex flex-wrap md:-m-2 -m-1">
       <div class="flex flex-wrap w-1/2">
