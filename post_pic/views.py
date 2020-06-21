@@ -21,6 +21,11 @@ def post(request):
     return redirect('signin')    
 
 def pic(request,query):
+    if request.method == 'POST':
+        comment = request.POST['comments']
+        
+
+        
     obj = Pic.objects.get(img_name=query)
     context = {
         'img_name': obj.img_name,
