@@ -1,4 +1,25 @@
 {% extends 'base.html' %} {% block body %}
+<style>
+  /* Chat containers */
+.container {
+  border: 2px solid #dedede;
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 0;
+}
+/* Style time text */
+.time-right {
+  float: right;
+  color: #aaa;
+}
+
+/* Style time text */
+.time-left {
+  float: left;
+  color: #999;
+}
+</style>
 
 <section class="text-gray-700 body-font overflow-hidden">
   <div class="container px-5 py-24 mx-auto">
@@ -36,7 +57,12 @@
           <div class="p-2 w-full">
             
             {% for item in comments %}
-              {{item.comment}}
+            <div class="comment">
+              <img src="/w3images/bandmember.jpg" alt="Avatar">
+              <p>{{item.comment}}</p>
+              <span class="time-right">Posted by {{item.user}} on {{item.pub_date}}</span>
+            </div>
+            <br>
             {% endfor %}
               
               
@@ -56,6 +82,7 @@
                 class="w-full bg-gray-100 rounded border border-gray-400 focus:outline-none h-48 focus:border-purple-500 text-base px-4 py-2 resize-none block"
                 placeholder="Post a Beautiful Comment"
                 name="comment"
+                required=''
               ></textarea>
               <br />
               <hr />
@@ -64,7 +91,7 @@
                 class="inline-flex text-white bg-indigo-500 border-0 py-1 px-4 focus:outline-none hover:bg-indigo-600 rounded"
                 name="submit"
               >
-                Button
+                Post
               </button>
             </form>
 
