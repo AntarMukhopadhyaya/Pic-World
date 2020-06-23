@@ -33,9 +33,14 @@ def pic(request,query):
 
         
     obj = Pic.objects.get(img_name=query)
-   
+    comments = Comments.objects.filter(comment_pic=query)
+    print(comments) 
     
-    context = {
+  
+        
+    return render(request,'pic.html',
+    {
+        'comments':comments,
         'img_name': obj.img_name,
         'img': obj.img,
         
@@ -44,7 +49,8 @@ def pic(request,query):
         'web_link':obj.web_link,
         'pub_date': obj.pub_date,
         'pub_by': obj.user
-    }
-    return render(request,'pic.html',context)
+    
+        }
+        )
         
 

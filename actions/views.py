@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.models import auth, User
+from post_pic.models import Pic
 # Create your views here.
 
 
@@ -62,15 +63,18 @@ def contact(request):
 def user(request,user):
     if request.user.is_authenticated:
         if User.objects.filter(username=user):
+            pics = Pic.objects.filter(user=user)
             obj = User.objects.get(username=user)
-            context = {
+            
+           
+           
+        
+            return render(request,'user.html',{
+            'pics':pics,
             'first_name':obj.first_name,
             'last_name': obj.last_name,
             'username': obj.username
-
-        }
-        
-            return render(request,'user.html',context)
+            })
         else:
             messages.error(request,'No user Found')
     else:
