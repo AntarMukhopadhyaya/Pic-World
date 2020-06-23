@@ -77,3 +77,6 @@ def user(request,user):
         return redirect('signin')
        
     return render(request,'user.html')
+
+def accounts(request):
+    return render(request,'accounts.html')
