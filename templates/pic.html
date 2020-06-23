@@ -28,12 +28,27 @@
         </h5>
         <br />
         <h2 class="title-font font-small text-1xl text-gray-900">
-          Posted by :&nbsp;{{pub_by}} on &nbsp; {{pub_date}}
+          Posted by :&nbsp;<a href="/actions/user/{{pub_by}}">{{pub_by}}</a> on &nbsp; {{pub_date}}
         </h2>
         <br />
-        <br>
+        <br />
         <div class="flex mb-5">
           <div class="p-2 w-full">
+            
+            {% for item in comments %}
+             {{item.comment}}
+            {% endfor %}
+              
+          </div>
+        </div>
+        <div class="flex mb-5">
+          <div class="p-2 w-full">
+            {% if messages %} 
+              {% for message in messages %} 
+                {{message}} 
+              {%endfor %} 
+            {% endif %} 
+            {% if user.is_authenticated %}
             <form action="" method="POST">
               {% csrf_token %}
               <textarea
@@ -41,10 +56,21 @@
                 placeholder="Post a Beautiful Comment"
                 name="comment"
               ></textarea>
-              <br>
-              <hr>
-              <button type='submit' class="inline-flex text-white bg-indigo-500 border-0 py-1 px-4 focus:outline-none hover:bg-indigo-600 rounded">Button</button>
+              <br />
+              <hr />
+              <button
+                type="submit"
+                class="inline-flex text-white bg-indigo-500 border-0 py-1 px-4 focus:outline-none hover:bg-indigo-600 rounded"
+                name="submit"
+              >
+                Button
+              </button>
             </form>
+
+            {% else %}
+            <h1>Login to post a comment</h1>
+
+            {% endif %}
           </div>
         </div>
       </div>

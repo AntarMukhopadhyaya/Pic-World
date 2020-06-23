@@ -21,4 +21,5 @@ urlpatterns = [
     path('',views.post,name='post'),
     path('pic/<str:query>',views.pic,name='pic'),
     
+    
 ]

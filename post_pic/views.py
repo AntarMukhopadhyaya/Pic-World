@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from .models import Pic
+from .models import Pic,Comments
 from django.contrib import messages
 
 # Create your views here.
@@ -22,14 +22,23 @@ def post(request):
 
 def pic(request,query):
     if request.method == 'POST':
-        comment = request.POST['comments']
-        
+        comment = request.POST['comment']
+        user = request.user
+        comment_pic = query
+        comments = Comments(user=user,comment=comment,comment_pic=comment_pic)
+        comments.save()
+        messages.success(request,'Comments Posted Successfully')
+        return redirect('/post_pic/pic/'+query)
+
 
         
     obj = Pic.objects.get(img_name=query)
+   
+    
     context = {
         'img_name': obj.img_name,
         'img': obj.img,
+        
         'tags': obj.tags,
         'desc': obj.img_desc,
         'web_link':obj.web_link,
