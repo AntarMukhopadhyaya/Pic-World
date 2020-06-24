@@ -58,7 +58,7 @@
             
             {% for item in comments %}
             <div class="comment">
-              <img src="/w3images/bandmember.jpg" alt="Avatar">
+              <img src="{{profile.img.url}}" alt="Avatar">
               <p>{{item.comment}}</p>
               <span class="time-right">Posted by {{item.user}} on {{item.pub_date}}</span>
             </div>
