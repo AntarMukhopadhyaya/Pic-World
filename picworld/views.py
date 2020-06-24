@@ -15,7 +15,7 @@ def index(request):
         
 
     
-    pics = Pic.objects.all()[0:5]
+    pics = Pic.objects.all()[0:10]
     
     return render(request,'index.html',{'pics': pics})
 

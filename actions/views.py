@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.models import auth, User
 from post_pic.models import Pic
-from actions.models import Profile
+
 # Create your views here.
 
 
@@ -66,7 +66,9 @@ def user(request,user):
         if User.objects.filter(username=user):
             pics = Pic.objects.filter(user=user)
             obj = User.objects.get(username=user)
-            profile = Profile.object.get(user=user)
+            
+
+          
 
             
            
@@ -77,7 +79,7 @@ def user(request,user):
             'first_name':obj.first_name,
             'last_name': obj.last_name,
             'username': obj.username,
-            'profile_img':profile.user_img,
+            
             })
         else:
             messages.error(request,'No user Found')
