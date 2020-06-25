@@ -60,7 +60,7 @@
             <div class="comment">
               <img src="{{profile.img.url}}" alt="Avatar">
               <p>{{item.comment}}</p>
-              <span class="time-right">Posted by {{item.user}} on {{item.pub_date}}</span>
+              <span class="time-right">Posted by <a href="/actions/user/{{item.user}}">{{item.user}}</a> on {{item.pub_date}}</span>
             </div>
             <br>
             {% endfor %}
