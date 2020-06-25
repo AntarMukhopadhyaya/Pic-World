@@ -88,5 +88,5 @@ def user(request,user):
        
     return render(request,'user.html')
 
-def accounts(request):
-    return render(request,'accounts.html')
+def profile(request):
+    return render(request,'profile.html')
