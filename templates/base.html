@@ -39,6 +39,7 @@
         
         {% if user.is_authenticated %}
         <a class="mr-5 hover:text-gray-900" href="/actions/logout">Log Out</a>
+        <a class="mr-5 hover:text-gray-900" href="/actions/profile/{{user}}">Accounts</a>
 
         {% else %}
         <a class="mr-5 hover:text-gray-900" href="/actions/signup">Sign Up</a>

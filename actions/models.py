@@ -11,3 +11,10 @@ class Profile(models.Model):
         return f'{self.user.username} Profile'
 
 
+class Contact(models.Model):
+    name = models.TextField(max_length=50,default='')
+    email = models.CharField(max_length=50,default='')
+    message = models.TextField(max_length=500,default='')
+    date = models.DateField(auto_now=True)
+    
+

@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.models import auth, User
 from post_pic.models import Pic
+from .models import Contact
 
 # Create your views here.
 
@@ -59,6 +60,15 @@ def logout(request):
     return redirect('/')
 
 def contact(request):
+    if request.method == 'POST':
+        name = request.POST['name']
+        email = request.POST['email']
+        message = request.POST['message']
+        contact = Contact(name=name,email=email,message=message)
+        contact.save()
+        messages.success(request,'Thanks for you Feedback')
+        return redirect('contact')
+
     return render(request,'contact.html')
 
 def user(request,user):
@@ -66,14 +76,6 @@ def user(request,user):
         if User.objects.filter(username=user):
             pics = Pic.objects.filter(user=user)
             obj = User.objects.get(username=user)
-            
-
-          
-
-            
-           
-           
-        
             return render(request,'user.html',{
             'pics':pics,
             'first_name':obj.first_name,
@@ -88,5 +90,5 @@ def user(request,user):
        
     return render(request,'user.html')
 
-def profile(request):
+def profile(request,user):
     return render(request,'profile.html')
