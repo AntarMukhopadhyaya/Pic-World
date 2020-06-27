@@ -56,6 +56,13 @@
         font-weight: 600;
         margin-bottom: 15px;
       }
+      .profile-usertitle-email {
+        text-transform: lowercase;
+        color: #5b9bd1;
+        font-size: 12px;
+        font-weight: 600;
+        margin-bottom: 15px;
+      }
 
       .profile-userbuttons {
         text-align: center;
@@ -142,6 +149,11 @@
               </div>
               <div class="profile-usertitle-job">
                 {{user.first_name}}{{user.last_name}}
+                
+              </div>
+              <div class="profile-usertitle-email">
+                {{user.email}}
+                
               </div>
             </div>
             <!-- END SIDEBAR USER TITLE -->

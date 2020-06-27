@@ -1,5 +1,25 @@
 {% extends 'base.html' %} {% block body %} {% load static %} 
 {% if user.is_authenticated %}
+<style>
+  .contain {
+    width: 50%;
+    margin: auto;
+    
+  }
+  
+  img {
+    max-width: 400px;
+    max-height: 400px;
+    
+    
+  }
+  .boxes {
+    width: 50%;
+    float: left;
+    
+    
+  }
+</style>
 <!-- Search Bar -->
 <div class="search">
   <form method="POST">
@@ -32,6 +52,7 @@
   <div class="container px-5 py-24 mx-auto">
     {% for pic in pics %}
     <br>
+    
     <div class="flex flex-wrap -mx-4 -mb-10 text-center">
       <div class="sm:w-1/2 mb-10 px-4">
         

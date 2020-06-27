@@ -1,24 +1,55 @@
 {% extends 'base.html' %} {% block body %}
 <style>
-  /* Chat containers */
-.container {
-  border: 2px solid #dedede;
-  background-color: #f1f1f1;
-  border-radius: 5px;
-  padding: 10px;
-  margin: 10px 0;
-}
-/* Style time text */
-.time-right {
-  float: right;
-  color: #aaa;
-}
+  .comment {
+    border: 2px solid #dedede;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+  }
+  
+  /* Darker chat container */
+  .darker {
+    border-color: #ccc;
+    background-color: #ddd;
+  }
+  
+  /* Clear floats */
+  .comment::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+  
+  /* Style images */
+  .comment img {
+    float: left;
+    max-width: 60px;
+    width: 100%;
+    margin-right: 20px;
+    border-radius: 50%;
+  }
+  
+  /* Style the right image */
+  .comment img.right {
+    float: right;
+    margin-left: 20px;
+    margin-right:0;
+  }
+  
+  /* Style time text */
+  .time-right {
+    float: right;
+    color: #aaa;
+  }
+  
+  /* Style time text */
+  .time-left {
+    float: left;
+    color: #999;
+  }
 
-/* Style time text */
-.time-left {
-  float: left;
-  color: #999;
-}
+
 </style>
 
 <section class="text-gray-700 body-font overflow-hidden">
@@ -58,7 +89,7 @@
             
             {% for item in comments %}
             <div class="comment">
-              <img src="{{profile.img.url}}" alt="Avatar">
+              <img src="{{user.profile.image.url}}" alt="Avatar" class="right">
               <p>{{item.comment}}</p>
               <span class="time-right">Posted by <a href="/actions/user/{{item.user}}">{{item.user}}</a> on {{item.pub_date}}</span>
             </div>
