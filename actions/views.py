@@ -92,3 +92,8 @@ def user(request,user):
 
 def profile(request,user):
     return render(request,'profile.html')
+
+
+def profile_setting(request,user):
+    return render(request,'profile_setting.html')
+    

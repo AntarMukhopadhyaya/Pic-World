@@ -36,6 +36,7 @@ urlpatterns = [
          name='password_reset_complete'),
     
     path('profile/<str:user>',views.profile, name='profile'),
+    path('profile-setting/<str:user>',views.profile_setting,name='profile-setting')
 
 
 
