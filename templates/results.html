@@ -1,0 +1,23 @@
+{% extends 'base.html' %} {% block body %}
+<h1>Search Results</h1>
+
+{% if allUser|length < 1 or  allPics|length < 1%}
+    <p>No search Results</p>
+    Your search -{{query}} did not match any images or user. 
+    <ul>Please try</ul>
+    <li>Make sure that all words are spelled correctly.</li>
+    <li>Try different keywords.</li>
+    <li>Try more general keywords.</li> 
+{%endif %} 
+
+
+{% for user in allUser %}
+    <a href="/actions/user/{{user.username}}"><h5>{{user.username}}</h5></a>
+{% endfor %} 
+
+
+{% for image in allPics %} 
+    {{image.img_name}} 
+    <img src="{{image.img.url}}" alt="{{image.img_name}} Posted by {{image.img.user}}">
+{% endfor %} 
+{% endblock body %}

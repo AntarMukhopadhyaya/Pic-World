@@ -25,7 +25,8 @@ urlpatterns = [
     path('',views.index,name='index'),
     path('actions/',include('actions.urls')),
     path('post_pic/',include('post_pic.urls')),
-    path('about',views.about,name='about')
+    path('about',views.about,name='about'),
+    path('search',views.search,name='search')
 ]
 urlpatterns += staticfiles_urlpatterns()
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
