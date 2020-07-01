@@ -1,23 +1,100 @@
-{% extends 'base.html' %} {% block body %}
-<h1>Search Results</h1>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Search:{{query}}</title>
+    <link
+      href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css"
+      rel="stylesheet"
+      id="bootstrap-css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <hgroup class="mb20">
+        <h1>Search Results</h1>
+        <h2 class="lead">
+          <strong class="text-danger">3</strong> results were found for the
+          search for <strong class="text-danger">{{query}}</strong>
+        </h2>
+      </hgroup>
 
-{% if allUser|length < 1 or  allPics|length < 1%}
-    <p>No search Results</p>
-    Your search -{{query}} did not match any images or user. 
+      <section class="col-xs-12 col-sm-6 col-md-12">
+        {% for image in allPics %}
+        <article class="search-result row">
+          <div class="col-xs-12 col-sm-12 col-md-3">
+            <a
+              href="/post_pic/pic/{{image.img_name}}"
+              title="{{image.img_name}}"
+              class="thumbnail"
+              ><img src="{{image.img.url}}" alt="{{image.img_name}}"
+            /></a>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-2">
+            <ul class="meta-search">
+              <li>
+                <i class="glyphicon glyphicon-calendar"></i>
+                <span>{{image.pub_date}}</span>
+              </li>
+
+              <li>
+                <i class="glyphicon glyphicon-tags"></i>
+                <span>{{image.tags}}</span>
+              </li>
+            </ul>
+          </div>
+          <div class="col-xs-12 col-sm-12 col-md-7">
+            <h3><a href="#" title="">{{image.img_name}}</a></h3>
+            <p>{{image.img_desc}}</p>
+            <span class="plus"
+              ><a href="#" title="Lorem ipsum"
+                ><i class="glyphicon glyphicon-plus"></i></a
+            ></span>
+          </div>
+          <span class="clearfix borda"></span>
+        </article>
+
+        {% endfor %}
+      </section>
+    </div>
+  </body>
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</html>
+<!-- <h1>Search Results</h1>
+<br>
+
+{% if allUser|length < 1 %}
+    <p>No User Found:</p>
+    Your search -{{query}} did not match any user. 
     <ul>Please try</ul>
     <li>Make sure that all words are spelled correctly.</li>
     <li>Try different keywords.</li>
     <li>Try more general keywords.</li> 
+{% else %}
+     <h2>Users:</h2>
+    {% for user in allUser %}
+        <a href="/actions/user/{{user.username}}"><h5>{{user.username}}</h5></a>
+    {% endfor %} 
+
 {%endif %} 
+<br>
+<h1>Images</h1>
 
+{% if allPics|length < 1 %}
+<p>No search Results</p>
+    Your search -{{query}} did not match any images. 
+    <ul>Please try</ul>
+    <li>Make sure that all words are spelled correctly.</li>
+    <li>Try different keywords.</li>
+    <li>Try more general keywords.</li> 
 
-{% for user in allUser %}
-    <a href="/actions/user/{{user.username}}"><h5>{{user.username}}</h5></a>
-{% endfor %} 
-
-
-{% for image in allPics %} 
-    {{image.img_name}} 
-    <img src="{{image.img.url}}" alt="{{image.img_name}} Posted by {{image.img.user}}">
-{% endfor %} 
-{% endblock body %}
+{% else %}
+<br>
+    {% for image in allPics %} 
+        {{image.img_name}} 
+        <img src="{{image.img.url}}" alt="{{image.img_name}} Posted by {{image.img.user}}">
+    {% endfor %} 
+{% endif %}
+     -->

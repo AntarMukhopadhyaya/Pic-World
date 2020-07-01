@@ -2,76 +2,21 @@
 {% load static %} 
 {% if user.is_authenticated %}
 
-<style>
-  .contain {
-    width: 50%;
-    margin: auto;
-  }
 
-  img {
-    max-width: 400px;
-    max-height: 400px;
-  }
-  .boxes {
-    width: 50%;
-    float: left;
-  }
-</style>
-<!-- Search Bar -->
-<div class="search-box">
-  <form action='/search' method="GET">
-    
-    <input
-      class="search-txt"
-      type="text"
-      placeholder="Type to search"
-      name="query"
-      id="query"
-    />
-
-    {% for message in messages %}
-    <small>{{message}}</small>
-    {% endfor %}
-
-    <button class="search-btn" type="submit">
-      <i class="fa fa-search"></i>
-    </button>
-  </form>
-</div>
-
-<section class="text-gray-700 body-font">
-  <div class="container px-5 py-24 mx-auto">
-    {% for pic in pics %}
-    <br />
-
-    <div class="flex flex-wrap -mx-4 -mb-10 text-center">
-      <div class="sm:w-1/2 mb-10 px-4">
-        <div class="rounded-lg h-64 overflow-hidden">
-          <h1 class="title-font font-medium text-3xl text-gray-900">
-            {{pic.img_name}}
-          </h1>
-          <a href="/post_pic/pic/{{pic.img_name}}" target="_blank">
-            <img
-              alt="content"
-              class="object-cover object-center h-full w-full"
-              src="{{pic.img.url}}"
-            />
-          </a>
-        </div>
-        <b
-          ><u
-            ><a href="/post_pic/pic/{{pic.img_name}}"
-              >Posted by: {{pic.user}}</a
-            ></u
-          ></b
-        >
-
-        <br />
-      </div>
-    </div>
-    {% endfor %}
+<div class="contain">
+  
+  {% for pic in pics %}
+  <a href="/post_pic/pic/{{pic.img_name}}" target="_blank">
+  <div class="gallery">
+    <img  src="{{pic.img.url}}" alt="" >
+    <div class="desc"><a href="/post_pic/pic/{{pic.img_name}}">{{pic.img_name}} Posted by {{pic.user}}</a></div>
   </div>
-</section>
+  </a>
+    
+  {% endfor %}
+    
+
+</div>
 
 {% else %}
 <section class="text-gray-700 body-font">

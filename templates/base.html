@@ -16,14 +16,13 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="{% static 'style.css' %}" />
-    <link rel="stylesheet" href="{% static 'dark.css' %}">
   </head>
   <body>
     <header class="text-gray-700 body-font">
       <div
         class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center"
       >
-        <a
+        <a href="/"
           class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0"
         >
           <svg
@@ -42,6 +41,8 @@
           </svg>
           <span class="ml-3 text-xl">Pic World</span>
         </a>
+        <br>
+       
         <nav
           class="md:ml-auto flex flex-wrap items-center text-base justify-center"
         >
@@ -50,42 +51,55 @@
           <a class="mr-5 hover:text-gray-900" href="/actions/profile/{{user}}"
             >Accounts</a
           >
-          
+          <a
+            class="inline-flex items-center bg-gray-200 border-0 py-1 px-3 focus:outline-none hover:bg-gray-300 rounded text-base mt-4 md:mt-0"
+            href="/post_pic/"
+          >
+            Post Pic
+            <svg
+              fill="none"
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              class="w-4 h-4 ml-1"
+              viewBox="0 0 24 24"
+            >
+              <path d="M5 12h14M12 5l7 7-7 7"></path>
+            </svg>
+          </a>
+          <form action="/search" method="GET">
+            <div class="flex w-full justify-center">
+              <input
+                name="query"
+                id="query"
+                class="border-0 bg-gray-100 rounded mr-4 border border-gray-400 focus:outline-none focus:border-indigo-500 text-base px-4 lg:w-full xl:w-1/2 w-2/4 md:w-full"
+                placeholder="Search User/Images"
+                type="text"
+              />
+              <button
+                type="submit"
+                class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg"
+              >
+                Search
+              </button>
+            </div>
+          </form>
 
           {% else %}
           <a class="mr-5 hover:text-gray-900" href="/actions/signup">Sign Up</a>
           <a class="mr-5 hover:text-gray-900" href="/actions/signin">Sign In</a>
-
-          {% endif %}
-
           <a class="mr-5 hover:text-gray-900" href="/actions/contact"
             >Contact</a
           >
           <a class="mr-5 hover:text-gray-900" href="/about">About</a>
+
+          {% endif %}
         </nav>
-        <a
-          class="inline-flex items-center bg-gray-200 border-0 py-1 px-3 focus:outline-none hover:bg-gray-300 rounded text-base mt-4 md:mt-0"
-          href="/post_pic/"
-        >
-          Post Pic
-          <svg
-            fill="none"
-            stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            class="w-4 h-4 ml-1"
-            viewBox="0 0 24 24"
-          >
-            <path d="M5 12h14M12 5l7 7-7 7"></path>
-          </svg>
-        </a>
       </div>
     </header>
 
     {% block body %}{% endblock body %}
-
-    
 
     <footer class="text-gray-700 body-font">
       <div class="bg-gray-200">

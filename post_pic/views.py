@@ -34,6 +34,7 @@ def pic(request,query):
         
     obj = Pic.objects.get(img_name=query)
     comments = Comments.objects.filter(comment_pic=query)
+    params = Pic.objects.all()
     print(comments) 
     
   
@@ -43,7 +44,7 @@ def pic(request,query):
         'comments':comments,
         'img_name': obj.img_name,
         'img': obj.img,
-        
+        'allImg':params,
         'tags': obj.tags,
         'desc': obj.img_desc,
         'web_link':obj.web_link,

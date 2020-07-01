@@ -6,6 +6,7 @@
     border-radius: 5px;
     padding: 10px;
     margin: 10px 0;
+    
   }
   
   /* Darker chat container */
@@ -19,6 +20,13 @@
     content: "";
     clear: both;
     display: table;
+  }
+
+  .comment-class{
+    overflow-y: scroll;
+    height: 350px;
+    display: flex;
+    flex-direction: column-reverse;
   }
   
   /* Style images */
@@ -48,6 +56,7 @@
     float: left;
     color: #999;
   }
+ 
 
 
 </style>
@@ -84,8 +93,11 @@
         </h2>
         <br />
         <br />
+        <div class="comment-class">
         <div class="flex mb-5">
+          
           <div class="p-2 w-full">
+           
             
             {% for item in comments %}
             <div class="comment">
@@ -94,11 +106,15 @@
               <span class="time-right">Posted by <a href="/actions/user/{{item.user}}">{{item.user}}</a> on {{item.pub_date}}</span>
             </div>
             <br>
+         
+            
             {% endfor %}
+         
               
               
           </div>
         </div>
+      </div>
         <div class="flex mb-5">
           <div class="p-2 w-full">
             {% if messages %} 
@@ -136,115 +152,20 @@
     </div>
   </div>
 </section>
-
-<section class="text-gray-700 body-font">
-  <div class="container px-5 py-24 mx-auto flex flex-wrap">
-    <div class="md:p-2 p-1 w-1/2">
-      <h1
-        class="sm:text-3xl text-2xl font-medium title-font text-gray-900 lg:w-1/3 lg:mb-0 mb-4"
-      >
-        More Pic posted by {{pub_by}}:
-        <br />
-      </h1>
-      <br />
-      <div class="md:p-2 p-1 w-1/2">
-        <img
-          alt="gallery"
-          class="w-full object-cover h-full object-center block"
-          src="https://dummyimage.com/502x302"
-        />
-      </div>
-      <div class="md:p-2 p-1 w-1/2">
-        <img
-          alt="gallery"
-          class="w-full object-cover h-full object-center block"
-          src="https://dummyimage.com/502x302"
-        />
-        <br />
-        <br />
-        <img
-          alt="gallery"
-          class="w-full object-cover h-full object-center block"
-          src="https://dummyimage.com/502x302"
-        />
-        <br />
-        <br />
-        <img
-          alt="gallery"
-          class="w-full object-cover h-full object-center block"
-          src="https://dummyimage.com/502x302"
-        />
-        <br />
-        <br />
-        <img
-          alt="gallery"
-          class="w-full object-cover h-full object-center block"
-          src="https://dummyimage.com/502x302"
-        />
-      </div>
-    </div>
-    <!-- <div class="flex w-full mb-20 flex-wrap">
-      <h1
-        class="sm:text-3xl text-2xl font-medium title-font text-gray-900 lg:w-1/3 lg:mb-0 mb-4"
-      >
-        {{img_name}}
-      </h1>
-      <p class="lg:pl-6 lg:w-2/3 mx-auto leading-relaxed text-base">
-        Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical
-        gentrify, subway tile poke farm-to-table. Franzen you probably haven't
-        heard of them man bun deep jianbing selfies heirloom.
-      </p>
-    </div> -->
-
-    <!-- <div class="flex flex-wrap md:-m-2 -m-1">
-      <div class="flex flex-wrap w-1/2">
-        <div class="md:p-2 p-1 w-1/2">
-          
-          {% for  pic in pics %}
-          <h5>{{pic.img_name}}</h5>
-          <img
-            alt="gallery"
-            class="w-full object-cover h-full object-center block"
-            src="{{pic.img}}"
-          />
-            
-          {% endfor %}
-            
-          
-        </div>
-        <div class="md:p-2 p-1 w-1/2">
-          <img
-            alt="gallery"
-            class="w-full object-cover h-full object-center block"
-            src="https://dummyimage.com/501x301"
-          />
-        </div>
-        <div class="md:p-2 p-1 w-full">
-          <img
-            alt="gallery"
-            class="w-full h-full object-cover object-center block"
-            src="https://dummyimage.com/600x360"
-          />
-        </div>
-      </div>
-      <div class="flex flex-wrap w-1/2">
-        <div class="md:p-2 p-1 w-full">
-          <img
-            alt="gallery"
-            class="w-full h-full object-cover object-center block"
-            src="https://dummyimage.com/601x361"
-          />
-        </div>
-       
-        <div class="md:p-2 p-1 w-1/2">
-          <img
-            alt="gallery"
-            class="w-full object-cover h-full object-center block"
-            src="https://dummyimage.com/503x303"
-          />
-        </div>
-      </div>
-    </div> -->
+<hr>
+<center><h1 class="sm:text-3xl text-2xl text-gray-900 font-medium title-font mb-2 md:w-2/5">More Images:</h1></center>
+<div class="contain">
+  
+  {% for img in allImg %}
+  <a href="/post_pic/pic/{{img.img_name}}" target="_blank">
+  <div class="gallery">
+    <img  src="{{img.img.url}}" alt="" >
+    <div class="desc"><a href="/post_pic/pic/{{img.img_name}}">{{img.img_name}} Posted by {{img.user}}</a></div>
   </div>
-</section>
+  </a>
+    
+  {% endfor %}
+    
+
+</div>
 {% endblock body %}
