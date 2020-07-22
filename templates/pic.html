@@ -1,171 +1,221 @@
-{% extends 'base.html' %} {% block body %}
-<style>
-  .comment {
-    border: 2px solid #dedede;
-    background-color: #f1f1f1;
-    border-radius: 5px;
-    padding: 10px;
-    margin: 10px 0;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Pic</title>
+  <link
+      href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css'%}">
+  <style>
+    .contain {
+      max-width: 1200px;
+      margin: auto;
+      background-color:#2f3640;
+      overflow: auto;
+    }
+    .gallery {
+      border: 1px solid #2f3640;
+      float: left;
+      width: 390px;
+      margin: 5px;
+    }
+    .gallery img {
+      width: auto;
+      height: auto;
+    }
+    .desc {
+      padding: 15px;
+      text-align: center;
+    }
+    .comment {
+      border: 2px solid #dedede;
+      background-color: #f1f1f1;
+      border-radius: 5px;
+      padding: 10px;
+      margin: 10px 0;
+      
+    }
     
-  }
+    /* Darker chat container */
+    .darker {
+      border-color: #ccc;
+      background-color: #ddd;
+    }
+    
+    /* Clear floats */
+    .comment::after {
+      content: "";
+      clear: both;
+      display: table;
+    }
   
-  /* Darker chat container */
-  .darker {
-    border-color: #ccc;
-    background-color: #ddd;
-  }
+    .comment-class{
+      overflow-y: scroll;
+      height: 350px;
+      display: flex;
+      flex-direction: column-reverse;
+    }
+    
+    /* Style images */
+    .comment img {
+      float: left;
+      max-width: 60px;
+      width: 100%;
+      margin-right: 20px;
+      border-radius: 50%;
+    }
+    
+    /* Style the right image */
+    .comment img.right {
+      float: right;
+      margin-left: 20px;
+      margin-right:0;
+    }
+    
+    /* Style time text */
+    .time-right {
+      float: right;
+      color: #aaa;
+    }
+    
+    /* Style time text */
+    .time-left {
+      float: left;
+      color: #999;
+    }
+   
   
-  /* Clear floats */
-  .comment::after {
-    content: "";
-    clear: both;
-    display: table;
-  }
-
-  .comment-class{
-    overflow-y: scroll;
-    height: 350px;
-    display: flex;
-    flex-direction: column-reverse;
-  }
   
-  /* Style images */
-  .comment img {
-    float: left;
-    max-width: 60px;
-    width: 100%;
-    margin-right: 20px;
-    border-radius: 50%;
-  }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="/">Pic World</a>
+    <nav>
+      <ul class="nav__links">
+        <li><a href="/actions/logout">Logout</a></li>
+        <li><a href="/actions/profile/{{user}}">Services</a></li>
+        <li><a href="#">Services</a></li>
+      </ul>
+    </nav>
+    <a class="cta" href="/post_pic/"><button class=" btn-nav">Post Pic</button></a>
+  </header>
+
   
-  /* Style the right image */
-  .comment img.right {
-    float: right;
-    margin-left: 20px;
-    margin-right:0;
-  }
+  <section class="text-gray-700 body-font overflow-hidden">
+    <div class="container px-5 py-24 mx-auto">
+      <div class="lg:w-4/5 mx-auto flex flex-wrap">
+        <a href="{{web_link}}" target="_blank">
+          <img
+            alt="{{img_name}}"
+            class="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded"
+            src="{{img.url}}"
+            style="max-width: 600px; max-height:600px;"
+          />
+        </a>
   
-  /* Style time text */
-  .time-right {
-    float: right;
-    color: #aaa;
-  }
+        <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
+          <h1 class="title-font font-medium text-3xl text-gray-900">
+            {{img_name}}
+          </h1>
+          <br />
   
-  /* Style time text */
-  .time-left {
-    float: left;
-    color: #999;
-  }
- 
-
-
-</style>
-
-<section class="text-gray-700 body-font overflow-hidden">
-  <div class="container px-5 py-24 mx-auto">
-    <div class="lg:w-4/5 mx-auto flex flex-wrap">
-      <a href="{{web_link}}" target="_blank">
-        <img
-          alt="{{img_name}}"
-          class="lg:w-1/2 w-full lg:h-auto h-64 object-cover object-center rounded"
-          src="{{img.url}}"
-        />
-      </a>
-
-      <div class="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
-        <h1 class="title-font font-medium text-3xl text-gray-900">
-          {{img_name}}
-        </h1>
-        <br />
-
-        <div class="flex mb-4">
-          <div class="p-2 w-full">
-            <h1>{{desc}}</h1>
-          </div>
-        </div>
-
-        <h5 class="title-font font-small text-2xl text-gray-900">
-          Tag:&nbsp;{{tags}}
-        </h5>
-        <br />
-        <h2 class="title-font font-small text-1xl text-gray-900">
-          Posted by :&nbsp;<a href="/actions/user/{{pub_by}}">{{pub_by}}</a> on &nbsp; {{pub_date}}
-        </h2>
-        <br />
-        <br />
-        <div class="comment-class">
-        <div class="flex mb-5">
-          
-          <div class="p-2 w-full">
-           
-            
-            {% for item in comments %}
-            <div class="comment">
-              <img src="{{user.profile.image.url}}" alt="Avatar" class="right">
-              <p>{{item.comment}}</p>
-              <span class="time-right">Posted by <a href="/actions/user/{{item.user}}">{{item.user}}</a> on {{item.pub_date}}</span>
+          <div class="flex mb-4">
+            <div class="p-2 w-full">
+              <h6>{{desc}}</h6>
             </div>
-            <br>
-         
+          </div>
+  
+          <h5 class="title-font font-small text-2xl text-gray-900">
+            Tag:&nbsp;{{tags}}
+          </h5>
+          <br />
+          <h2 class="title-font font-small text-1xl text-gray-900">
+            Posted by :&nbsp;<a href="/actions/user/{{pub_by}}">{{pub_by}}</a> on &nbsp; {{pub_date}}
+          </h2>
+          <br />
+          <br />
+          <div class="comment-class">
+          <div class="flex mb-5">
             
-            {% endfor %}
-         
+            <div class="p-2 w-full">
+             
               
+              {% for item in comments %}
+              <div class="comment">
+                <img src="{{user.profile.image.url}}" alt="Avatar" class="right">
+                <p>{{item.comment}}</p>
+                <span class="time-right">Posted by <a href="/actions/user/{{item.user}}">{{item.user}}</a> on {{item.pub_date}}</span>
+              </div>
+              <br>
+           
               
+              {% endfor %}
+           
+                
+                
+            </div>
           </div>
         </div>
-      </div>
-        <div class="flex mb-5">
-          <div class="p-2 w-full">
-            {% if messages %} 
-              {% for message in messages %} 
-                {{message}} 
-              {%endfor %} 
-            {% endif %} 
-            {% if user.is_authenticated %}
-            <form action="" method="POST">
-              {% csrf_token %}
-              <textarea
-                class="w-full bg-gray-100 rounded border border-gray-400 focus:outline-none h-48 focus:border-purple-500 text-base px-4 py-2 resize-none block"
-                placeholder="Post a Beautiful Comment"
-                name="comment"
-                required=''
-              ></textarea>
-              <br />
-              <hr />
-              <button
-                type="submit"
-                class="inline-flex text-white bg-indigo-500 border-0 py-1 px-4 focus:outline-none hover:bg-indigo-600 rounded"
-                name="submit"
-              >
-                Post
-              </button>
-            </form>
-
-            {% else %}
-            <h1>Login to post a comment</h1>
-
-            {% endif %}
+          <div class="flex mb-5">
+            <div class="p-2 w-full">
+              {% if messages %} 
+                {% for message in messages %} 
+                  {{message}} 
+                {%endfor %} 
+              {% endif %} 
+              {% if user.is_authenticated %}
+              <form action="" method="POST">
+                {% csrf_token %}
+                <textarea
+                  class="w-full bg-gray-100 rounded border border-gray-400 focus:outline-none h-48 focus:border-purple-500 text-base px-4 py-2 resize-none block"
+                  placeholder="Post a Beautiful Comment"
+                  name="comment"
+                  required=''
+                ></textarea>
+                <br />
+                <hr />
+                <button
+                  type="submit"
+                  class="inline-flex text-white bg-indigo-500 border-0 py-1 px-4 focus:outline-none hover:bg-indigo-600 rounded"
+                  name="submit"
+                >
+                  Post
+                </button>
+              </form>
+  
+              {% else %}
+              <h1>Login to post a comment</h1>
+  
+              {% endif %}
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
-<hr>
-<center><h1 class="sm:text-3xl text-2xl text-gray-900 font-medium title-font mb-2 md:w-2/5">More Images:</h1></center>
-<div class="contain">
+  </section>
+  <hr>
+  <center><h1 class="sm:text-3xl text-2xl text-gray-900 font-medium title-font mb-2 md:w-2/5">More Images:</h1></center>
+  <div class="contain">
+    
+    {% for img in allImg %}
+    <a href="/post_pic/pic/{{img.img_name}}" target="_blank">
+    <div class="gallery">
+      <img  src="{{img.img.url}}" alt="" >
+      <div class="desc"><a href="/post_pic/pic/{{img.img_name}}">{{img.img_name}} Posted by {{img.user}}</a></div>
+    </div>
+    </a>
+      
+    {% endfor %}
+      
   
-  {% for img in allImg %}
-  <a href="/post_pic/pic/{{img.img_name}}" target="_blank">
-  <div class="gallery">
-    <img  src="{{img.img.url}}" alt="" >
-    <div class="desc"><a href="/post_pic/pic/{{img.img_name}}">{{img.img_name}} Posted by {{img.user}}</a></div>
   </div>
-  </a>
-    
-  {% endfor %}
-    
 
-</div>
-{% endblock body %}
+  
+  
+</body>
+</html>

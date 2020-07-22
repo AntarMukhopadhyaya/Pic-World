@@ -1,7 +1,22 @@
 {% extends 'base.html' %} {% block body %} 
 {% load static %} 
 {% if user.is_authenticated %}
+{% load static%}
+<style>
+  
+</style>
+<form action="/search" method="GET">
+<div class="container h-100">
+  <div class="d-flex justify-content-center h-100">
+    <div class="searchbar">
+     
+      <input required class="search_input" type="text" name="query" placeholder="Search...">
+      <button type='submit' class="search_icon"><i class="fa fa-search"></i></button>
 
+    </div>
+  </div>
+</div>
+</form>
 
 <div class="contain">
   

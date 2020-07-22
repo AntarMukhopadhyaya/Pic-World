@@ -9,6 +9,8 @@
       rel="stylesheet"
       id="bootstrap-css"
     />
+    {% load static %}
+    <link rel="stylesheet" href='{% static 'result.css' %}'>
   </head>
   <body>
     <div class="container">
@@ -19,8 +21,20 @@
           search for <strong class="text-danger">{{query}}</strong>
         </h2>
       </hgroup>
+    
 
       <section class="col-xs-12 col-sm-6 col-md-12">
+        {% if allPics|length < 1 %}
+        <p>No search Results</p>
+            Your search -{{query}} did not match any images.
+            <br> 
+           <strong>Please try</strong> 
+            <li>Make sure that all words are spelled correctly.</li>
+            <li>Try different keywords.</li>
+            <li>Try more general keywords.</li> 
+
+        {% else %}
+    
         {% for image in allPics %}
         <article class="search-result row">
           <div class="col-xs-12 col-sm-12 col-md-3">
@@ -42,6 +56,10 @@
                 <i class="glyphicon glyphicon-tags"></i>
                 <span>{{image.tags}}</span>
               </li>
+              <li>
+                <i class="glyphicon glyphicon-tags"></i>
+                <span>Posted by <a href="/actions/user/{{image.user}}"><strong>{{image.user}}</strong></span></a>
+              </li>
             </ul>
           </div>
           <div class="col-xs-12 col-sm-12 col-md-7">
@@ -56,6 +74,7 @@
         </article>
 
         {% endfor %}
+        {%endif%}
       </section>
     </div>
   </body>
