@@ -81,39 +81,3 @@
   <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
   <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 </html>
-<!-- <h1>Search Results</h1>
-<br>
-
-{% if allUser|length < 1 %}
-    <p>No User Found:</p>
-    Your search -{{query}} did not match any user. 
-    <ul>Please try</ul>
-    <li>Make sure that all words are spelled correctly.</li>
-    <li>Try different keywords.</li>
-    <li>Try more general keywords.</li> 
-{% else %}
-     <h2>Users:</h2>
-    {% for user in allUser %}
-        <a href="/actions/user/{{user.username}}"><h5>{{user.username}}</h5></a>
-    {% endfor %} 
-
-{%endif %} 
-<br>
-<h1>Images</h1>
-
-{% if allPics|length < 1 %}
-<p>No search Results</p>
-    Your search -{{query}} did not match any images. 
-    <ul>Please try</ul>
-    <li>Make sure that all words are spelled correctly.</li>
-    <li>Try different keywords.</li>
-    <li>Try more general keywords.</li> 
-
-{% else %}
-<br>
-    {% for image in allPics %} 
-        {{image.img_name}} 
-        <img src="{{image.img.url}}" alt="{{image.img_name}} Posted by {{image.img.user}}">
-    {% endfor %} 
-{% endif %}
-     -->
